@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <body>
+    <h1 style="text-align:center">Calculator App</h1>
+    
+    <label for="fnum">First Number</label>
+    <input id="fnum" type="text" placeholder="1" oninput="setFnum(event)">
+
+    <label for="lnum">Last Number</label>
+    <input id="lnum" type="text" placeholder="2" oninput="setLnum(event)">
+     
+
+   
+    <button onclick="Add(event)">Add</button>
+    <button onclick="Subtract(event)">Subtract</button>
+    <button onclick="Multiply(event)">Multiply</button>
+    <button onclick="Divide(event)">Divide</button>    
+    
+
+    <div id="ResultDiv"></div>   
+  
+</body>
+<script>
+     let history= [];
+     let fnum = 0;
+    function setFnum(event = new Event()){
+        fnum = parseInt(event.target.value);
+    }
+
+    let Lnum = 0;
+    function setLnum(event = new Event()){
+        Lnum = parseInt(event.target.value);
+    }
+
+    function Add(event = new Event()){
+                
+        history.push(fnum  + Lnum);
+      ShowResult(event);       
+    }
+    function Subtract(event = new Event()){        
+        history.push(fnum  - Lnum);       
+       
+        ShowResult(event);
+    }
+ function Multiply(event = new Event()){
+    history.push(fnum  * Lnum);                      
+       
+        ShowResult(event);
+ }
+  function Divide(event = new Event()){
+    history.push(fnum  / Lnum);             
+        
+       
+        ShowResult(event);
+         }
+         function ShowResult(event=new Event){
+            const AddDiv = document.getElementById("ResultDiv");
+            AddDiv.innerHTML = "";
+            for(const simple  of history){
+                const heading = document.createElement("h1");
+                heading.innerText=simple;
+                AddDiv.appendChild(heading);
+            }
+
+         }
+</script>
+</html>
